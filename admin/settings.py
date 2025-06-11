@@ -2,16 +2,27 @@
 Django settings
 """
 
+from .databases import SQLITE, POSTGRESQL, MYSQL
+from django.urls import reverse_lazy
+from dotenv import load_dotenv
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-sr#^xw5%gki7y!*48^w_36%vghffkiug(km%_z9%l$+=6o8imv'
 
-DEBUG = True
+DEBUG = os.getenv("DEBUG_DJ")
 
-ALLOWED_HOSTS = []
+if DEBUG:
+    ALLOWED_HOSTS = ["*"]
+else:
+    ALLOWED_HOSTS = [os.getenv("IP_SERVER"), os.getenv("DOMAIN")]
+
+CSRF_TRUSTED_ORIGINS = [f"https://{os.getenv('DOMAIN')}"]
+CSRF_ALLOWED_ORIGINS = ["https://{os.getenv('DOMAIN')}"]
+CORS_ORIGINS_WHITELIST = ["https://{os.getenv('DOMAIN')}"]
 
 
 # Application definition
@@ -36,12 +47,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'fast_dev.urls'
+ROOT_URLCONF = 'admin.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -54,14 +65,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'fast_dev.wsgi.application'
+WSGI_APPLICATION = 'admin.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+DATABASES = SQLITE
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -89,8 +95,24 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
+STATIC_URL = "static/"
 
-STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / "static",]
+
+# Static Deploy productive
+
+STATIC_ROOT = (BASE_DIR / 'staticfiles/')
+
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
+
+LOGIN_URL = reverse_lazy('users:login')
 
 # Default primary key field type
 

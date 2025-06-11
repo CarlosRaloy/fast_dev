@@ -1,1 +1,5 @@
 db.sqlite3
+
+aplications/users/migrations/
+
+aplications/users/__pycache__/
