@@ -9,7 +9,6 @@
   <meta name="author" content="Raloy" />
   <link rel="icon" type="image/png" href="{% static 'img/labico.png' %}">
 
-
   <!-- ================== ESTILOS BASE ================== -->
   {% if request.user.profile.theme == 'default' %}
     <link href="{% static 'assets/css/default/app.min.css' %}" rel="stylesheet" />
@@ -36,8 +35,11 @@
   <!-- Awesomplete 1.1.7 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.7/awesomplete.min.css" />
 
-<!-- Drive -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.css"/>
+  <!-- Driver.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.css" />
+
+  <!-- ================== ESTILOS DATATABLES ================== -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css" />
 </head>
 
 <body>
@@ -57,7 +59,8 @@
       {% block content %}{% endblock content %}
     </div>
 
-    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top">
+    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade"
+       data-click="scroll-top">
       <i class="fa fa-angle-up"></i>
     </a>
   </div>
@@ -78,7 +81,6 @@
     <script src="{% static 'assets/js/theme/transparent.min.js' %}"></script>
   {% endif %}
 
-
   <!-- Bootstrap Datepicker -->
   <script src="{% static 'assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.js' %}"></script>
 
@@ -91,13 +93,16 @@
   <!-- Awesomplete -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.7/awesomplete.min.js"></script>
 
-  <!-- drive js -->
+  <!-- Driver.js -->
   <script src="https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.js.iife.js"></script>
 
-  <!-- Interactjs -->
+  <!-- Interact.js -->
   <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
 
-  {% block scripts %}{% endblock scripts %}
+  <!-- ================== SCRIPTS DATATABLES ================== -->
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
+
+  {% block scripts %}{% endblock %}
 </body>
 </html>
-
