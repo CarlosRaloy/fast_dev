@@ -1,10 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="utf-8" />
+  {% block head_content %}{% endblock %}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content="Laboratorio Raloy" />
+  <meta name="author" content="Raloy" />
+  <link rel="icon" type="image/png" href="{% static 'img/labico.png' %}">
+
+
+  <!-- ================== ESTILOS BASE ================== -->
+  {% if request.user.profile.theme == 'default' %}
+    <link href="{% static 'assets/css/default/app.min.css' %}" rel="stylesheet" />
+  {% elif request.user.profile.theme == 'apple' %}
+    <link href="{% static 'assets/css/apple/app.min.css' %}" rel="stylesheet" />
+  {% elif request.user.profile.theme == 'transparent' %}
+    <link href="{% static 'assets/css/transparent/app.min.css' %}" rel="stylesheet" />
+  {% else %}
+    <link href="{% static 'assets/css/default/app.min.css' %}" rel="stylesheet" />
+  {% endif %}
+
+  <!-- Fuente Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- SweetAlert2 11.22.0 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.0/dist/sweetalert2.min.css">
+
+  <!-- Select2 4.1.0-rc.0 -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+  <!-- Awesomplete 1.1.7 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.7/awesomplete.min.css" />
+
+<!-- Drive -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.css"/>
 </head>
+
 <body>
-<h1>{{ response }}</h1>
+  <div class="page-cover"></div>
+  <div id="page-loader" class="fade show">
+    <span class="spinner"></span>
+  </div>
+
+  <div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+    {% include 'navbar.html' %}
+    {% include 'sidebar.html' %}
+
+    <div id="content" class="content">
+      <ol class="breadcrumb float-xl-right">
+        {% block sitio %}{% endblock %}
+      </ol>
+      {% block content %}{% endblock content %}
+    </div>
+
+    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+  </div>
+
+  <!-- ================== SCRIPTS BASE ================== -->
+
+  <!-- jQuery 3.7.1 -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <!-- App JS -->
+  <script src="{% static 'assets/js/app.min.js' %}"></script>
+
+  {% if request.user.profile.theme == 'default' %}
+    <script src="{% static 'assets/js/theme/default.min.js' %}"></script>
+  {% elif request.user.profile.theme == 'apple' %}
+    <script src="{% static 'assets/js/theme/apple.min.js' %}"></script>
+  {% elif request.user.profile.theme == 'transparent' %}
+    <script src="{% static 'assets/js/theme/transparent.min.js' %}"></script>
+  {% endif %}
+
+
+  <!-- Bootstrap Datepicker -->
+  <script src="{% static 'assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.js' %}"></script>
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.0/dist/sweetalert2.min.js"></script>
+
+  <!-- Select2 -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  <!-- Awesomplete -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.7/awesomplete.min.js"></script>
+
+  <!-- drive js -->
+  <script src="https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.js.iife.js"></script>
+
+  <!-- Interactjs -->
+  <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+
+  {% block scripts %}{% endblock scripts %}
 </body>
 </html>
+

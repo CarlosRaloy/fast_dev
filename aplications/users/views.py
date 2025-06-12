@@ -21,5 +21,5 @@ def login_view(request):
 
 @login_required
 def ping(request):
-    response = "PONG (202)"
-    return render(request, template_name='base.html', context={'response': response})
+    response = "PONG (200)"
+    return render(request, template_name='blank.html', context={'response': response})
