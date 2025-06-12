@@ -13,7 +13,7 @@
             min-height: 100vh;
         }
         body {
-            background: url("https://images.pexels.com/photos/18785909/pexels-photo-18785909/free-photo-of-efecto-bokeh.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1") no-repeat center center fixed;
+            background: url("https://wallpapers.com/images/featured/montana-nocturna-2bhotujq381jpvh6.jpg") no-repeat center center fixed;
             background-size: cover;
         }
         /* Glasmorphism minimalista */
@@ -30,7 +30,6 @@
         .form-control {
             background: rgba(255,255,255,0.18) !important;
             border: 1px solid rgba(255,255,255,0.25);
-            color: #232336;
             border-radius: 0.8rem;
             font-weight: 400;
             margin-bottom: 1.1rem;
@@ -39,6 +38,7 @@
         .form-control:focus {
             background: rgba(255,255,255,0.22) !important;
             border-color: #00e6fe55;
+            color: #00d1da;
             outline: none;
         }
         .btn-dark {
@@ -83,6 +83,7 @@
     </style>
 </head>
 <body>
+{% block toast %}{% endblock %}
     <div class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col-sm-12 col-md-5 col-lg-4" id="auth-container">
