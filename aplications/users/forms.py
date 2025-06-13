@@ -49,3 +49,22 @@ class SignupForm(forms.Form):
         )
         Profile.objects.create(user=user)
         return user
+
+
+
+# Actualizar Perfil
+
+themes ={
+    ('apple', 'apple'),
+    ('default', 'default'),
+    ('facebook', 'facebook'),
+    ('material', 'material'),
+    ('transparent', 'transparent'),
+    ('google', 'google'),
+}
+
+
+class ProfileForm(forms.Form):
+    """Profile form."""
+    theme = forms.CharField(widget=forms.Select(choices=themes))
+    picture = forms.ImageField(required=False)

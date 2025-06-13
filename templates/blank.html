@@ -6,141 +6,193 @@
 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
+    <div class="container mt-5">
 
-    <!-- DataTables -->
-    <h3>DataTables</h3>
-    <table id="example" class="table table-bordered table-striped" style="width:100%">
-        <thead>
+        <!-- DataTables -->
+        <h3>DataTables</h3>
+        <table id="example" class="table table-bordered table-striped" style="width:100%">
+            <thead>
             <tr>
                 <th>Nombre</th>
                 <th>Correo</th>
                 <th>Rol</th>
             </tr>
-        </thead>
-        <tbody>
-            <tr><td>Juan</td><td>juan@example.com</td><td>Admin</td></tr>
-            <tr><td>Ana</td><td>ana@example.com</td><td>Editor</td></tr>
-            <tr><td>Pedro</td><td>pedro@example.com</td><td>Usuario</td></tr>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Juan</td>
+                <td>juan@example.com</td>
+                <td>Admin</td>
+            </tr>
+            <tr>
+                <td>Ana</td>
+                <td>ana@example.com</td>
+                <td>Editor</td>
+            </tr>
+            <tr>
+                <td>Pedro</td>
+                <td>pedro@example.com</td>
+                <td>Usuario</td>
+            </tr>
+            </tbody>
+        </table>
 
-    <hr>
+        <hr>
 
-    <!-- SweetAlert2 -->
-    <h3>SweetAlert2</h3>
-    <button id="btn-alerta" class="btn btn-warning">Mostrar Alerta</button>
+        <!-- SweetAlert2 -->
+        <h3>SweetAlert2</h3>
+        <button id="btn-alerta" class="btn btn-warning">Mostrar Alerta</button>
 
-    <hr>
+        <hr>
 
-    <!-- Select2 -->
-    <h3>Select2</h3>
-    <select id="select-demo" class="form-select select2" style="width: 100%;">
-        <option value="1">Opción A</option>
-        <option value="2">Opción B</option>
-        <option value="3">Opción C</option>
-    </select>
+        <!-- Select2 -->
+        <h3>Select2</h3>
+        <select id="select-demo" class="form-select select2" style="width: 100%;">
+            <option value="1">Opción A</option>
+            <option value="2">Opción B</option>
+            <option value="3">Opción C</option>
+        </select>
 
-    <hr>
+        <hr>
 
-    <!-- Awesomplete -->
-    <h3>Awesomplete</h3>
-    <input class="awesomplete form-control" list="sugerencias" placeholder="Escribe un lenguaje...">
-    <datalist id="sugerencias">
-        <option>Python</option>
-        <option>Django</option>
-        <option>JavaScript</option>
-        <option>HTML</option>
-        <option>CSS</option>
-    </datalist>
+        <!-- Awesomplete -->
+        <h3>Awesomplete</h3>
+        <input class="awesomplete form-control" list="sugerencias" placeholder="Escribe un lenguaje...">
+        <datalist id="sugerencias">
+            <option>Python</option>
+            <option>Django</option>
+            <option>JavaScript</option>
+            <option>HTML</option>
+            <option>CSS</option>
+            <option>PHP</option>
+            <option>Java</option>
+            <option>C++</option>
+            <option>C#</option>
+            <option>Ruby</option>
+            <option>C</option>
+            <option>CoffeeScript</option>
+            <option>Perl</option>
+            <option>Go</option>
+            <option>Scala</option>
+            <option>R</option>
+            <option>Lua</option>
+            <option>Haskell</option>
+            <option>Erlang</option>
+            <option>Elixir</option>
+            <option>OCaml</option>
+            <option>Rust</option>
+            <option>Swift</option>
+            <option>Kotlin</option>
+            <option>Dart</option>
+            <option>Clojure</option>
+            <option>Elixir</option>
+            <option>Elm</option>
+            <option>F#</option>
+            <option>Haxe</option>
+        </datalist>
 
-    <hr>
+        <hr>
 
-    <!-- Datepicker -->
-    <h3>Bootstrap Datepicker</h3>
-    <input type="text" class="form-control datepicker" placeholder="Selecciona una fecha">
+        <!-- Datepicker -->
+        <h3>Bootstrap Datepicker</h3>
+        <input type="text" class="form-control datepicker" placeholder="Selecciona una fecha">
 
-    <hr>
+        <hr>
 
-    <!-- Driver.js -->
-    <h3>Driver.js (tour guiado)</h3>
-    <button id="btn-tour" class="btn btn-info">Iniciar Tour</button>
+        <!-- Driver.js -->
+        <h3>Driver.js (tour guiado)</h3>
+        <button id="btn-tour" class="btn btn-info">Iniciar Tour</button>
 
-    <hr>
+        <hr>
 
-    <!-- Interact.js -->
-    <h3>Interact.js (arrastrar)</h3>
-    <div id="drag-box" style="width:150px;height:150px;background:#4CAF50;color:#fff;display:flex;align-items:center;justify-content:center;cursor:move;">
-        Arrástrame
+        <!-- Interact.js -->
+        <h3>Interact.js (arrastrar)</h3>
+        <div id="drag-box"
+             style="width:150px;height:150px;background:#4CAF50;color:#fff;display:flex;align-items:center;justify-content:center;cursor:move;">
+            Arrástrame
+        </div>
+
     </div>
-
-</div>
 {% endblock %}
 
 {% block scripts %}
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    new DataTable('#example', {
-        responsive: true,
-        language: {
-            url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
-        },
-        searchPanes: true,
-        select: true,
-        dom: 'Plfrtip'
-    });
-});
+    <script>
 
-    // SweetAlert2
-    document.getElementById('btn-alerta').addEventListener('click', () => {
-        Swal.fire({
-            title: '¡Hola!',
-            text: 'Este es un mensaje con SweetAlert2',
-            icon: 'success',
-            confirmButtonText: 'Cerrar'
+        // Datatables
+        document.addEventListener('DOMContentLoaded', function () {
+            new DataTable('#example', {
+                responsive: true,
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
+                },
+                searchPanes: true,
+                select: true,
+                dom: 'Plfrtip'
+            });
         });
-    });
 
-    // Select2
-    $(document).ready(function () {
-        $('#select-demo').select2();
-    });
-
-    // Datepicker
-    $('.datepicker').datepicker({
-        format: 'yyyy-mm-dd',
-        autoclose: true,
-        todayHighlight: true
-    });
-
-    // Driver.js
-    document.getElementById('btn-tour').addEventListener('click', () => {
-        const driver = window.driver.js.driver;
-        const tour = driver({
-            showProgress: true,
-            steps: [
-                { element: '#tabla-demo', popover: { title: 'DataTables', description: 'Esta tabla usa DataTables.', position: 'bottom' }},
-                { element: '#btn-alerta', popover: { title: 'SweetAlert2', description: 'Botón con alerta personalizada.', position: 'top' }},
-                { element: '#select-demo', popover: { title: 'Select2', description: 'Select con autocompletado.', position: 'top' }},
-                { element: '#drag-box', popover: { title: 'Interact.js', description: 'Puedes arrastrar este cuadro.', position: 'top' }}
-            ]
+        // SweetAlert2
+        document.getElementById('btn-alerta').addEventListener('click', () => {
+            Swal.fire({
+                title: '¡Hola!',
+                text: 'Este es un mensaje con SweetAlert2',
+                icon: 'success',
+                confirmButtonText: 'Cerrar'
+            });
         });
-        tour.drive();
-    });
 
-    // Interact.js
-    interact('#drag-box').draggable({
-        listeners: {
-            move (event) {
-                const target = event.target;
-                const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
-                const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+        // Select2
+        $(document).ready(function () {
+            $('#select-demo').select2();
+        });
 
-                target.style.transform = `translate(${x}px, ${y}px)`;
-                target.setAttribute('data-x', x);
-                target.setAttribute('data-y', y);
+        // Datepicker
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayHighlight: true
+        });
+
+        // Driver.js
+        document.getElementById('btn-tour').addEventListener('click', () => {
+            const driver = window.driver.js.driver;
+            const tour = driver({
+                showProgress: true,
+                steps: [
+                    {
+                        element: '#tabla-demo',
+                        popover: {title: 'DataTables', description: 'Esta tabla usa DataTables.', position: 'bottom'}
+                    },
+                    {
+                        element: '#btn-alerta',
+                        popover: {title: 'SweetAlert2', description: 'Botón con alerta personalizada.', position: 'top'}
+                    },
+                    {
+                        element: '#select-demo',
+                        popover: {title: 'Select2', description: 'Select con autocompletado.', position: 'top'}
+                    },
+                    {
+                        element: '#drag-box',
+                        popover: {title: 'Interact.js', description: 'Puedes arrastrar este cuadro.', position: 'top'}
+                    }
+                ]
+            });
+            tour.drive();
+        });
+
+        // Interact.js
+        interact('#drag-box').draggable({
+            listeners: {
+                move(event) {
+                    const target = event.target;
+                    const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+                    const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+                    target.style.transform = `translate(${x}px, ${y}px)`;
+                    target.setAttribute('data-x', x);
+                    target.setAttribute('data-y', y);
+                }
             }
-        }
-    });
-</script>
+        });
+    </script>
 {% endblock %}
