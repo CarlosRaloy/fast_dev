@@ -20,3 +20,9 @@
 ::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(255, 255, 255, 0.3);
 }
+
+/* Input Select personalizado */
+select.personal-select option {
+    background: #555555;
+    color: #dddddd;             /* texto blanco */
+}
