@@ -1,6 +1,6 @@
 {% load static %}
 <!-- begin #sidebar -->
-<div id="sidebar" class="sidebar">
+<div id="sidebar" class="sidebar sidebar-transparent">
     <!-- begin sidebar scrollbar -->
     <div data-scrollbar="true" data-height="100%">
         <!-- begin sidebar user -->
@@ -38,7 +38,7 @@
             </li>
             <li>
                 <ul class="nav nav-profile">
-                    <li><a href="#"><i class="fa fa-cog"></i>Editar Perfil</a></li>
+                    <li><a href="{% url 'users:update_profile' %}"><i class="fa fa-cog"></i>Editar Perfil</a></li>
                     <li><a href="javascript:;"><i class="fa fa-question-circle"></i> Ayuda</a></li>
                 </ul>
             </li>

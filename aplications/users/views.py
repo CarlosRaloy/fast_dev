@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from aplications.users.forms import SignupForm
+from aplications.users.forms import SignupForm, ProfileForm
 from django.urls import reverse
 from .models import Profile
 
@@ -47,6 +47,33 @@ def signup(request):
     return render(request, 'users/signup.html', {
         'form': form
     })
+
+
+
+@login_required
+def update_profile(request):
+    profile = request.user.profile
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            data = form.cleaned_data
+            profile.picture = data['picture']
+            profile.theme = data['theme']
+            profile.save()
+
+            return redirect('users:ping')
+    else:
+        form = ProfileForm()
+    return render(
+        request=request,
+        template_name='users/update_profile.html',
+        context={
+            'profile': profile,
+            'user': request.user,
+            'form': form
+        }
+    )
 
 
 @login_required

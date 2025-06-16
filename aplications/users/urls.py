@@ -21,6 +21,12 @@ urlpatterns = [
     ),
 
     path(
+        route='update_profile/',
+        view=views.update_profile,
+        name='update_profile'
+    ),
+
+    path(
         route='',
         view=views.ping,
         name='ping'
