@@ -58,7 +58,7 @@
                     <span>Home</span>
                 </a>
                 <ul class="sub-menu">
-                    <li><a href="#"><i class="fa-solid fa-table"></i> Listado</a></li>
+                    <li><a href="{% url 'users:ping' %}"><i class="fa-solid fa-table"></i> Listado</a></li>
                 </ul>
             </li>
             <!-- End Panel -->
@@ -67,11 +67,11 @@
             <li class="has-sub logic_blocked logic_user">
                 <a href="javascript:;">
                     <b class="caret"></b>
-                    <i class="fa-regular fa-circle" style="color: #00c2ab;"></i>
-                    <span>Modulo</span>
+                    <i class="fa-solid fa-users" style="color: #66ffed;"></i>
+                    <span>Usuarios</span>
                 </a>
                 <ul class="sub-menu">
-                    <li><a href="#"><i class="fa-solid fa-table"></i> Listado</a></li>
+                    <li><a href="{% url 'users:panel' %}"><i class="fa-regular fa-address-card" style="color: #75a8ff;"></i> Panel Admin</a></li>
                 </ul>
             </li>
             <!-- End Panel-->

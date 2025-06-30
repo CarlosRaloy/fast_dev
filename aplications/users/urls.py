@@ -27,6 +27,12 @@ urlpatterns = [
     ),
 
     path(
+        route='panel_user/',
+        view=views.user_panel,
+        name='panel'
+    ),
+
+    path(
         route='',
         view=views.ping,
         name='ping'

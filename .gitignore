@@ -1,5 +1,24 @@
 db.sqlite3
 
+**/__pycache__/
+*.py[cod]
+
+venv/
+.venv/
+env/
+
+staticfiles
+
+err.log
+
+logs/gunicorn.log
+
+out.log
+
+.idea/
+
+.env
+
 aplications/users/migrations/
 
 aplications/users/__pycache__/
