@@ -86,6 +86,7 @@ def user_panel(request):
                     password=request.POST["password"],
                     first_name=request.POST["first_name"],
                     last_name=request.POST["last_name"],
+                    email=request.POST.get("email", "").strip()
                 )
                 Profile.objects.create(
                     user=user,
@@ -100,6 +101,7 @@ def user_panel(request):
                 user = get_object_or_404(User, pk=user_id)
                 user.first_name = request.POST["first_name"]
                 user.last_name = request.POST["last_name"]
+                user.email = request.POST.get("email", "").strip()
                 user.save()
                 profile = user.profile
                 profile.level = request.POST.get("level", 0)

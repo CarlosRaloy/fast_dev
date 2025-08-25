@@ -31,6 +31,7 @@
           <tr>
               <th>Nombre</th>
               <th>Usuario</th>
+               <th>Email</th>
               <th>Nivel</th>
               <th>Último Acceso</th>
               <th class="text-center">Acciones</th>
@@ -41,6 +42,7 @@
           <tr>
               <td>{{ user.get_full_name }}</td>
               <td>{{ user.username }}</td>
+              <td>{{ user.email }}</td>
               <td>
                   {% if user.profile.level == 0 %}
                       <span class="badge bg-secondary">Bloqueado</span>
@@ -63,6 +65,7 @@
                   <button class="btn btn-sm btn-primary btn-edit"
                           data-id="{{ user.id }}"
                           data-username="{{ user.username }}"
+                          data-email="{{ user.email }}"
                           data-first_name="{{ user.first_name }}"
                           data-last_name="{{ user.last_name }}"
                           data-level="{{ user.profile.level }}">
@@ -93,13 +96,29 @@
           <h5 class="modal-title"><i class="fas fa-user-plus"></i> Crear Usuario</h5>
         </div>
         <div class="modal-body row g-2">
-          <div class="col-md-6"><label>Nombre</label><input type="text" name="first_name" class="form-control" required></div>
-          <div class="col-md-6"><label>Apellido</label><input type="text" name="last_name" class="form-control" required></div>
-          <div class="col-md-6"><label>Username</label><input type="text" name="username" class="form-control" required></div>
-          <div class="col-md-6"><label>Contraseña</label><input type="password" name="password" class="form-control" required></div>
-          <div class="col-md-12">
+          <div class="col-md-4">
+            <label>Nombre</label>
+            <input type="text" name="first_name" class="form-control" required>
+          </div>
+          <div class="col-md-4">
+            <label>Apellido</label>
+            <input type="text" name="last_name" class="form-control" required>
+          </div>
+          <div class="col-md-4">
+            <label>Username</label>
+            <input type="text" name="username" class="form-control" required>
+          </div>
+          <div class="col-md-4">
+            <label>Contraseña</label>
+            <input type="password" name="password" class="form-control" required>
+          </div>
+          <div class="col-md-4">
+            <label>Email (opcional)</label>
+            <input type="email" name="email" class="form-control">
+          </div>
+          <div class="col-md-4">
             <label>Nivel</label>
-            <select name="level" class="formula-select form-control">
+            <select name="level" class="form-control">
               <option value="0">Bloqueado</option>
               <option value="1">Normal</option>
               <option value="2">Administrador</option>
@@ -126,11 +145,21 @@
           <h5 class="modal-title"><i class="fas fa-user-edit"></i> Editar Usuario</h5>
         </div>
         <div class="modal-body row g-2">
-          <div class="col-md-6"><label>Nombre</label><input type="text" name="first_name" class="form-control"></div>
-          <div class="col-md-6"><label>Apellido</label><input type="text" name="last_name" class="form-control"></div>
-          <div class="col-md-12">
+          <div class="col-md-4">
+            <label>Nombre</label>
+            <input type="text" name="first_name" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <label>Apellido</label>
+            <input type="text" name="last_name" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control">
+          </div>
+          <div class="col-md-4">
             <label>Nivel</label>
-            <select name="level" class="form-select form-control">
+            <select name="level" class="form-control">
               <option value="0">Bloqueado</option>
               <option value="1">Normal</option>
               <option value="2">Administrador</option>
@@ -144,6 +173,7 @@
     </form>
   </div>
 </div>
+
 {% endblock %}
 
 {% block scripts %}
@@ -189,6 +219,7 @@ document.addEventListener("DOMContentLoaded", function () {
         $("#form-edit-user input[name='user_id']").val($(this).data("id"));
         $("#form-edit-user input[name='first_name']").val($(this).data("first_name"));
         $("#form-edit-user input[name='last_name']").val($(this).data("last_name"));
+        $("#form-edit-user input[name='email']").val($(this).data("email"));
         $("#form-edit-user select[name='level']").val($(this).data("level"));
         modal.show();
     });
