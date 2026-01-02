@@ -1,4 +1,28 @@
 {% load static %}
+
+
+<style>
+    .logic_blocked {
+        {% if request.user.profile.level == 0 %}
+            display: none !important;
+        {% endif %}
+    }
+
+    .logic_user {
+        {% if request.user.profile.level == 1 %}
+            display: none !important;
+        {% endif %}
+    }
+
+    .logic_admin {
+        {% if request.user.profile.level == 2 %}
+            display: none !important;
+        {% endif %}
+    }
+
+/*<li class="has-sub logic_id">*/
+</style>
+
 <!-- begin #sidebar -->
 <div id="sidebar" class="sidebar sidebar-transparent">
     <!-- begin sidebar scrollbar -->
@@ -51,7 +75,7 @@
 
 
             <!-- Panel ONE -->
-            <li class="has-sub logic_lab logic_blocked">
+            <li class="has-sub logic_blocked">
                 <a href="javascript:;">
                     <b class="caret"></b>
                     <i class="fa-solid fa-house" style="color: #74C0FC;"></i>
@@ -64,7 +88,7 @@
             <!-- End Panel -->
 
             <!-- Panel TWO  -->
-            <li class="has-sub logic_blocked logic_user">
+            <li class="has-sub logic_blocked">
                 <a href="javascript:;">
                     <b class="caret"></b>
                     <i class="fa-solid fa-users" style="color: #66ffed;"></i>

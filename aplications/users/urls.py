@@ -38,4 +38,10 @@ urlpatterns = [
         name='ping'
     ),
 
+    path(
+        route='block/',
+        view=views.block_user,
+        name='block'
+    ),
+
 ]

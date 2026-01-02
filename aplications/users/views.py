@@ -8,6 +8,26 @@ from django.http import JsonResponse
 from django.urls import reverse
 from .models import Profile
 
+def _home_for(user) -> str:
+    """
+    Devuelve la URL absoluta (string) a la que debe ir el usuario
+    según su nivel de perfil.
+    """
+    profile = getattr(user, "profile", None)
+    level = getattr(profile, "level", 0)
+
+    # Mapeo nivel -> nombre de url
+    if level == 0:       # bloqueado
+        url_name = "users:ping"
+    elif level == 1:     # Usuario
+        url_name = "users:ping"
+    elif level == 2:     # Admin
+        url_name = "users:ping"
+    else:                # fallback
+        url_name = "users:block"
+
+    return reverse(url_name)
+
 def login_view(request):
     registrado = request.GET.get('registrado') == '1'
 
@@ -17,7 +37,8 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
-            return redirect('users:ping')
+            # redirección según nivel
+            return redirect(_home_for(user))
         else:
             return render(request, 'users/login.html', {
                 'error': 'El usuario o la contraseña son inválidos',
@@ -124,3 +145,8 @@ def user_panel(request):
 @login_required
 def ping(request):
     return render(request, 'blank.html', {'response': 'PONG (200)'})
+
+
+def block_user(request):
+    message = "Estas bloqueado por el momento, Espera que el administrador te desbloquee"
+    return render(request, "block.html", {"message": message})
