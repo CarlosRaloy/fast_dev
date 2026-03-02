@@ -73,25 +73,35 @@ def signup(request):
 def update_profile(request):
     profile = request.user.profile
 
-    if request.method == 'POST':
+    if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             data = form.cleaned_data
-            profile.picture = data['picture']
-            profile.theme = data['theme']
+
+            # Actualiza theme
+            profile.theme = data.get("theme") or profile.theme
+
+            # No borres la foto si el usuario no subió una nueva
+            new_picture = data.get("picture")
+            if new_picture:
+                profile.picture = new_picture
+
             profile.save()
 
-            return redirect('users:ping')
+            # Redirección correcta según nivel (admin y compras al panel)
+            return redirect(_home_for(request.user))
     else:
-        form = ProfileForm()
+        # Precarga theme actual para que el select salga con el valor actual
+        form = ProfileForm(initial={"theme": getattr(profile, "theme", "")})
+
     return render(
-        request=request,
-        template_name='users/update_profile.html',
-        context={
-            'profile': profile,
-            'user': request.user,
-            'form': form
-        }
+        request,
+        "users/update_profile.html",
+        {
+            "profile": profile,
+            "user": request.user,
+            "form": form,
+        },
     )
 
 @login_required
